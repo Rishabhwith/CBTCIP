@@ -1,83 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY PORTFOLIO</title>
+    <title>My Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background-color: rgb(2, 2, 33);
-        color: white;
-        font-family: "Poppins", sans-serif;
-      }
-      nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 80px;
-        background-color: rgb(0, 0, 0);
-      }
-      nav ul {
-        display: flex;
-        justify-content: center;
-      }
-      nav ul li {
-        list-style: none;
-        margin: 0 23px;
-      }
-      :left {
-        font-size: 1.5rem;
-      }
-      .firstSection{
-        display: flex;
-        justify-content: space-around;
-        margin: 23px 0;
-      }
-      .firstSection div{
-        width: 30%;
-      }
-      .leftSection{
-        background-color: red;
-        
-      }
-      .rightSection{
-      background-color: red;
-      }
+        body {
+            background-color: rgb(2, 2, 33);
+            color: white;
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgb(0, 0, 0);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            background-color: rgb(30, 30, 30);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgb(147, 80, 209);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-link {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: rgb(103, 103, 204) !important;
+            transform: scale(1.1);
+        }
+
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn-custom {
+            background: #1b1670;
+            color: white;
+            border: 2px solid white;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: white;
+            color: #1b1670;
+            border: 2px solid #1b1670;
+            transform: scale(1.05);
+        }
+
+        .section-heading {
+            margin-top: 40px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(147, 80, 209);
+        }
+
+        .card-custom {
+            background: rgb(0, 0, 0);
+            border: 1px solid rgb(147, 80, 209);
+            color: white;
+        }
+
+        .card-custom .card-body {
+            color: white;
+        }
+
+        .footer {
+            background-color: rgb(8, 18, 29);
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .footer a {
+            color: white;
+        }
+
+        .footer a:hover {
+            color: rgb(103, 103, 204);
+        }
+
+        @media (max-width: 767px) {
+            .hero-section {
+                height: auto;
+                padding-top: 60px;
+            }
+
+            .section-heading {
+                font-size: 1.5rem;
+            }
+
+            .btn-custom {
+                font-size: 0.875rem;
+                margin: 5px;
+            }
+
+            .footer {
+                font-size: 0.875rem;
+                padding: 15px 0;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <div class="left">Rishabh's Portfolio</div>
-        <div class="right"></div>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Services</li>
-          <li>Projects</li>
-          <li>Contact me</li>
-        </ul>
-      </nav>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+        <a class="navbar-brand" href="#">Rishabh's Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Hi, my name is <span class="text-primary">Rishabh Sharma</span></h1>
+            <p class="lead">and I am a passionate <span id="element"></span></p>
+            <a href="my resume(2).pdf" class="btn btn-custom" download>Download Resume</a>
+            <a href="https://github.com/Rishabhwith/CBTCIP" class="btn btn-custom" target="_blank">Visit Github</a>
+            <img src="bg.png" alt="Background Image" class="hero-img" data-aos="fade-up">
+        </div>
     </header>
-    <main>
-       <section class="firstSection">
-        <div class="leftSection">
-          Hi, my name is Rishabh 
-          <div>and I am a web devloper</div>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-heading" data-aos="fade-up">About Me</h2>
+            <p data-aos="fade-up">I am a student specializing in AI and Data Science at Poornima College of Engineering.
+                I hail from the Marble City, Kishangarh.</p>
+            <p data-aos="fade-up">My journey in the field started with a fascination for how technology can solve
+                complex problems and improve our lives. Over the years, I have honed my skills in C,
+                C++, Java, OOPS, and Web Development. These technologies and concepts are at the core of my interests, and
+                I am passionate about exploring their depths and applications.</p>
         </div>
-        <div class="rightsection">
-        <img src="bg.png" alt="">
+    </section>
+
+    <section id="services" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-heading" data-aos="fade-up">Services</h2>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card card-custom">
+                        <div class="card-body">
+                            <h3 class="card-title">Web Development</h3>
+                            <p class="card-text">Creating dynamic and responsive websites using HTML, CSS, and
+                                JavaScript.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card card-custom">
+                        <div class="card-body">
+                            <h3 class="card-title">Software Development</h3>
+                            <p class="card-text">Building robust applications using languages like Java, Python, C, and
+                                C++.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-    </main>
-  </body>
+    </section>
+
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-heading" data-aos="fade-up">Projects</h2>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card card-custom">
+                        <img src="tictac.png" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Tic Tac Toe</h5>
+                            <p class="card-text">Classic two-player game also known as "Noughts and Crosses".</p>
+                            <a href="http://127.0.0.1:5501/rishabh/index.html" class="btn btn-custom"
+                                target="_blank">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card card-custom">
+                        <img src="flappybird.png" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Flappy Bird</h5>
+                            <p class="card-text"> A simple yet highly addictive game where the "player controls a bird."
+                            </p>
+                            <a href="http://127.0.0.1:5501/rishabh/index1.html" class="btn btn-custom"
+                                target="_blank">View Project</a>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 mb-4">
+                        <h5>Rishabh's Developer Portfolio</h5>
+                        <p>Your go-to place for web and software development expertise.</p>
+                    </div>
+                    <div class="col-md-3 col-sm-12 mb-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-12 mb-4">
+                        <h5>Contact</h5>
+                        <ul class="list-unstyled">
+                            <li>Email: rishabhsh2504@gmail.com</li>
+                            <li>Phone: 9376385334</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-rights text-center">Copyright &#169; rishabhsportfolio.com | All rights reserved</div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init();
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Typed.js
+        var typed = new Typed('#element', {
+            strings: ['Web Developer', 'Java Developer', 'HTML Developer', 'C Developer', 'C++ Developer.'],
+            typeSpeed: 50,
+            backSpeed: 25,
+            backDelay: 1000,
+            loop: true
+        });
+    </script>
+</body>
+
 </html>
